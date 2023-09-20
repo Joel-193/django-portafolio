@@ -1,0 +1,47 @@
+<!--Hereda de la barra de plantilla principal de navbar.html-->
+{% extends 'layout.html' %}
+<!--Significa que este contenido puede cambiar-->
+{% block content %}
+{% load static %}
+<header class="row bg-black">
+    <div class="col-md-4">
+        <!--La ubicacion del la imagen-->
+        <img src="{% static 'portfolio/perfil.jpg' %}" alt="" width="200" height="265">
+    </div>
+    <div class="col-md-8 my-auto">
+        <h1>Yo soy <strong>Joel Cedeño</strong></h1>
+        <h3>Desarrollador Web</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga fugit temporibus dolorem veniam
+            vitae consectetur voluptate possimus itaque! Possimus ullam tempora deleniti iure aliquid sequi,
+            ipsam minus quibusdam odit natus!</p>
+        <!--La ubicacion del pdf-->
+        <!--Nombre de la descarga de la portada para el curriculo-->
+        <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'portfolio/curriculum.pdf' %}" target="_blank">
+                Descargar</a>
+    </div>
+</header>
+<!--Centrar las targetas-->
+<div class="row my-4 text-center">
+  <!--Aqui comienza la configuracion del proyecto-->
+  <h1>Mis proyectos</h1>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+  {% for project in projects %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+      <!--Cambia la presentacion del los proyectos img-fluid-->
+      <img src="{{project.image.url }}" class="card-img-top" />
+      <div class="card-body">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        {% if project.url %}
+        <!--El link donde manda a mi git-hub-->
+        <a href="{{project.url}}" class="btn btn-light rounded-0 btn-sm" target="__blank" rel="noreferrer">
+          Visitar mi proyecto</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+  </div>
+  
